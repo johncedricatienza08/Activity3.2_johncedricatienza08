@@ -173,3 +173,11 @@ WHERE h.is_active = true;
 SELECT hero_name
 FROM public.hero
 WHERE class_id = 104;
+
+
+SELECT c.class_name, AVG(p.player_level) AS avg_player_level
+FROM public.class c
+LEFT JOIN public.hero h ON c.class_id = h.class_id
+LEFT JOIN public.player p ON h.hero_id = p.hero_id
+GROUP BY c.class_name
+ORDER BY avg_player_level DESC;
